@@ -1,4 +1,3 @@
-
 /*
 
 Golang h264,aac decoder/encoder libav wrapper
@@ -23,7 +22,7 @@ import (
 	"reflect"
 
 	/*
-	#cgo darwin LDFLAGS: -lavformat -lavutil -lavcodec 
+	#cgo LDFLAGS: -lavformat -lavutil -lavcodec 
 
 	#include <libavutil/avutil.h>
 	#include <libavformat/avformat.h>
@@ -47,5 +46,3 @@ func fromCPtr(buf unsafe.Pointer, size int) (ret []uint8) {
 	hdr.Data = uintptr(buf)
 	return
 }
-
-
