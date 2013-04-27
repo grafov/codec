@@ -93,7 +93,7 @@ func NewH264Encoder(
 
 type h264Out struct {
 	Data []byte
-	Key bool
+	Key  bool
 }
 
 func (m *H264Encoder) Encode(img *image.YCbCr) (out h264Out, err error) {
@@ -119,7 +119,7 @@ func (m *H264Encoder) Encode(img *image.YCbCr) (out h264Out, err error) {
 	}
 
 	C.av_init_packet(&m.m.pkt)
-	r := C.avcodec_encode_video(m.m.ctx, &m.m.pkt, f, &m.m.got)
+	r := C.avcodec_encode_video2(m.m.ctx, &m.m.pkt, f, &m.m.got)
 	defer C.av_free_packet(&m.m.pkt)
 	if int(r) < 0 {
 		err = errors.New("encode failed")
@@ -129,7 +129,7 @@ func (m *H264Encoder) Encode(img *image.YCbCr) (out h264Out, err error) {
 		err = errors.New("no picture")
 		return
 	}
-	if (m.m.pkt.size == 0) {
+	if m.m.pkt.size == 0 {
 		err = errors.New("packet size == 0")
 		return
 	}
