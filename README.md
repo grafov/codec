@@ -1,4 +1,4 @@
-
+__Forked from go-av/codec__
 codec
 ====
 
@@ -63,3 +63,7 @@ AAC decoding example
 		sample, err := dec.Decode(p)
 	}
 
+Status
+------
+
+Successfully build on Gentoo with libav-9.4.
